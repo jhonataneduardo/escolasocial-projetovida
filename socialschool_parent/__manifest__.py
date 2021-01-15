@@ -13,6 +13,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/student_view.xml',
+        'views/parent_view.xml',
         # 'menu/socialschool_parent_menu.xml',
     ],
     'demo': [

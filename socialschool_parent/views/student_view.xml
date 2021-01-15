@@ -7,13 +7,18 @@
             <field name="model">socialschool.student</field>
             <field name="inherit_id" ref="socialschool_base.view_socialschool_base_student_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//div[@name='smart_button']" position="inside">
-                    <button class="btn oe_stat_button" type="object"
-                            name="get_parent"
-                            style="border-right: 1px solid;"
-                            icon="fa-user-o">
-                        <span>Parentes</span>
-                    </button>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Dados da Família">
+                        <field name="parent_ids">
+                            <tree>
+                                <field name="name"/>
+                                <field name="parent_type"/>
+                                <field name="is_legal_responsible"/>
+                                <field name="in_same_house"/>
+                                <field name="profession"/>
+                            </tree>
+                        </field>
+                    </page>
                 </xpath>
             </field>
         </record>

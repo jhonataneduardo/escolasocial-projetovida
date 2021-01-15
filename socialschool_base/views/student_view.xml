@@ -29,9 +29,9 @@
                         </div>
                         <field name="image" widget="image" class="oe_left oe_avatar"/>
                         <div class="oe_title">
-                            <h1>
+                            <h3>
                                 <field name="title" placeholder="Titulo" style="width: 30%%"/>
-                            </h1>
+                            </h3>
                             <h1>
                                 <field name="name" placeholder="Name" required="1" invisible="1"/>
                                 <table>
@@ -48,7 +48,7 @@
                         </div>
                         <notebook>
                             <page string="Dados do aluno">
-                                <group>
+                                <group name="aluno">
                                     <group>
                                         <field name="gender"/>
                                         <field name="nationality"/>
