@@ -52,6 +52,7 @@
                                     </group>
                                     <group>
                                         <field name="parent_type"/>
+                                        <field name="income" widget="monetary" options="{'currency_field': 'company_currency'}"/>
                                     </group>
                                 </group>
                                 <group name="parent">

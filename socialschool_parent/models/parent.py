@@ -36,6 +36,7 @@ class SocialSchooParent(models.Model):
     nationality = fields.Many2one('res.country', 'Nacionalidade')
     rg = fields.Char(string="RG")
     cpf = fields.Char(string="CPF")
+    income = fields.Float(string="Renda")
     partner_id = fields.Many2one('res.partner', 'Partner', required=True, ondelete="cascade")
     user_id = fields.Many2one('res.users', 'User', ondelete="cascade")
     student_id = fields.Many2one('socialschool.student', string="Parentes")

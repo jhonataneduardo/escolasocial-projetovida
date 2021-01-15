@@ -7,7 +7,9 @@
             <field name="model">socialschool.student</field>
             <field name="arch" type="xml">
                 <tree string="Alunos">
-                    <field name="first_name"/>
+                    <field name="name"/>
+                    <field name="birth_date"/>
+                    <field name="gender"/>
                 </tree>
             </field>
         </record>
@@ -85,7 +87,17 @@
                                 <field name="health_ids">
                                     <form>
                                         <sheet>
-                                            <field name="type"/>
+                                            <group>
+                                                <group>
+                                                    <field name="type"/>
+                                                </group>
+                                                <group>
+                                                    <field name="medication_use"/>
+                                                </group>
+                                            </group>
+                                            <group>
+                                                <field name="description"/>
+                                            </group>
                                         </sheet>
                                     </form>
                                     <tree>
@@ -94,6 +106,11 @@
                                         <field name="description"/>
                                     </tree>
                                 </field>
+                                <group>
+                                    <group>
+                                        <field name="partner_id"/>
+                                    </group>
+                                </group>
                             </page>
                         </notebook>
                     </sheet>

@@ -17,7 +17,7 @@ class SocialSchoolStudent(models.Model):
     ], 'Gênero', required=True, default='m')
     nationality = fields.Many2one('res.country', 'Nacionalidade')
     emergency_contact = fields.Many2one('res.partner', 'Contatos de Emergência')
-    health_ids = fields.Many2many("socialschool.student.health", string="Questões de saúde")
+    health_ids = fields.One2many("socialschool.student.health", "student_id", string="Questões de saúde")
     partner_id = fields.Many2one('res.partner', 'Partner', required=True, ondelete="cascade")
     user_id = fields.Many2one('res.users', 'User', ondelete="cascade")
     active = fields.Boolean(default=True)
@@ -56,9 +56,13 @@ class SocialSchoolStudentHealth(models.Model):
     _description = "Social School Student Health"
 
     type = fields.Selection([
-        ('psychological', 'Psicológico'),
-        ('physicist', 'Físico')
+        ('ps', 'Psicológico'),
+        ('fs', 'Físico')
     ], string="Tipo")
-    medication_use = fields.Boolean(string="Usa medicamento contínuo?")
+    medication_use = fields.Selection([
+        ('s', 'Sim'),
+        ('n', 'Não')
+    ], string='Usa medicamentos?')
     description = fields.Text(string="Descrição")
+    student_id = fields.Many2one("socialschool.student")
 
