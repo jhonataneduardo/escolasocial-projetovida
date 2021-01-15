@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_socialschool_parent_student_form" model="ir.ui.view">
+            <field name="name">view.socialschool.parent.student.form</field>
+            <field name="model">socialschool.student</field>
+            <field name="inherit_id" ref="socialschool_base.view_socialschool_base_student_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet" position="before">
+                    <header>
+                        <button type="object" name="create_student_enrollment"
+                                string="Criar Matrícula"
+                                class="oe_highlight"/>
+                    </header>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

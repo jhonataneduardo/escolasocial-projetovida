@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Escola Social Menu -->
+        <menuitem id="menu_escolasocial_gestao"
+                  name="Gestão"
+                  parent="escolasocial_base.menu_escolasocial_base_root" />
+
+        <menuitem id="menu_escolasocial_gestao_grupos"
+                  name="Grupos"
+                  parent="menu_escolasocial_gestao"
+                  sequence="10"
+                  action="act_menu_escolasocial_gestao_grupos" />
+
+        <menuitem id="menu_escolasocial_gestao_cursos"
+                  name="Cursos"
+                  parent="menu_escolasocial_gestao"
+                  sequence="10"
+                  action="act_menu_escolasocial_gestao_cursos" />
+    </data>
+</odoo>

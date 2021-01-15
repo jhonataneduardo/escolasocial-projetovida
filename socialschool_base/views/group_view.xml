@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_socialschool_base_group_tree" model="ir.ui.view">
+            <field name="name">view.socialschool.group.tree</field>
+            <field name="model">socialschool.group</field>
+            <field name="arch" type="xml">
+                <tree string="Grupos">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_socialschool_base_group_form" model="ir.ui.view">
+            <field name="name">view.socialschool.group.form</field>
+            <field name="model">socialschool.group</field>
+            <field name="arch" type="xml">
+                <form string="Grupos">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Configurações">
+                                <grup>
+                                    <group>
+                                        <group>
+                                            <field name="parent_id"/>
+                                            <field name="periods"/>
+                                        </group>
+                                        <group>
+                                            <field name="type_vacancies"/>
+                                            <field name="number_vacancies"
+                                                   attrs="{'invisible': [('type_vacancies', '!=', 'by_group')], 'required': [('type_vacancies', '=', 'by_group')]}"/>
+                                        </group>
+                                    </group>
+                                </grup>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="act_menu_socialschool_base_group" model="ir.actions.act_window">
+            <field name="name">Grupos</field>
+            <field name="res_model">socialschool.group</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Adicione seu primeiro integrante do corpo docente</p>
+            </field>
+        </record>
+
+        <record id="act_menu_socialschool_group_form" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="act_menu_socialschool_base_group"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_socialschool_base_group_form"/>
+        </record>
+
+        <record id="act_menu_socialschool_base_group_tree" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="act_menu_socialschool_base_group"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_socialschool_base_group_tree"/>
+        </record>
+
+    </data>
+</odoo>

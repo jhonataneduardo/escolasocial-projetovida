@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Escola Social Menu -->
+        <menuitem id="menu_socialschool_base_root"
+                  name="Escola Social"
+                  sequence="10"
+                  web_icon="socialschool_base,static/description/icon.png"/>
+
+        <menuitem id="menu_socialschool_base_student"
+                  name="Alunos"
+                  parent="menu_socialschool_base_root"
+                  sequence="10"
+                  action="act_menu_socialschool_base_student" />
+
+        <menuitem id="menu_socialschool_base_faculty"
+                  name="Corpo Docente"
+                  parent="menu_socialschool_base_root"
+                  sequence="10"
+                  action="act_menu_socialschool_base_faculty" />
+
+        <!-- menu configurações -->
+        <menuitem id="menu_socialschool_base_config"
+                  name="Configurações"
+                  parent="menu_socialschool_base_root"
+                  sequence="40"/>
+
+        <menuitem id="menu_socialschool_base_couse_management"
+                  name="Gestão de Cursos"
+                  parent="menu_socialschool_base_config"
+                  sequence="10" />
+
+
+        <menuitem id="menu_socialschool_base_group"
+                  name="Grupos"
+                  parent="menu_socialschool_base_couse_management"
+                  sequence="10"
+                  action="act_menu_socialschool_base_group" />
+
+        <menuitem id="menu_socialschool_base_course"
+                  name="Cursos"
+                  parent="menu_socialschool_base_couse_management"
+                  sequence="10"
+                  action="act_menu_socialschool_base_course" />
+
+        <menuitem id="menu_socialschool_base_category"
+                  name="Categorias"
+                  parent="menu_socialschool_base_couse_management"
+                  sequence="10"
+                  action="act_menu_socialschool_base_category" />
+    </data>
+</odoo>

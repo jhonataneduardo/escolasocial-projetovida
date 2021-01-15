@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_socialschool_enrollment_tree" model="ir.ui.view">
+            <field name="name">view.socialschool.enrollment.tree</field>
+            <field name="model">socialschool.enrollment</field>
+            <field name="arch" type="xml">
+                <tree string="Matrículas">
+                    <field name="state"/>
+                    <field name="student_id"/>
+                    <field name="group_id" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_socialschool_enrollment_form" model="ir.ui.view">
+            <field name="name">view.socialschool.enrollment.form</field>
+            <field name="model">socialschool.enrollment</field>
+            <field name="arch" type="xml">
+                <form string="Matrículas">
+                    <header>
+                        <button type="object" name="reserved_enrollment"
+                                string="Reservar"
+                                states="draft"
+                                class="oe_highlight"/>
+                        <button type="object" name="done_enrollment"
+                                string="Concluir"
+                                states="reserved"
+                                class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,reserved,done" />
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="student_id"/>
+                            </group>
+                            <group>
+                                <field name="group_id" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Cursos">
+                                <field name="enrollment_course_ids" widget="section_and_note_one2many">
+                                    <form>
+                                        <field name="course_id" force_save="1"/>
+                                    </form>
+                                    <tree>
+                                        <field name="course_id"/>
+                                        <field name="course_group"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="act_menu_socialschool_enrollment" model="ir.actions.act_window">
+            <field name="name">Matrículas</field>
+            <field name="res_model">socialschool.enrollment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Adicione seu primeiro integrante do corpo docente</p>
+            </field>
+        </record>
+
+        <record id="act_menu_socialschool_enrollment_form" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="act_menu_socialschool_enrollment"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_socialschool_enrollment_form"/>
+        </record>
+
+        <record id="act_menu_socialschool_enrollment_tree" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="act_menu_socialschool_enrollment"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_socialschool_enrollment_tree"/>
+        </record>
+
+    </data>
+</odoo>

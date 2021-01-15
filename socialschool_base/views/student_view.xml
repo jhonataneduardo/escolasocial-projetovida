@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_socialschool_base_student_tree" model="ir.ui.view">
+            <field name="name">view.socialschool.student.tree</field>
+            <field name="model">socialschool.student</field>
+            <field name="arch" type="xml">
+                <tree string="Alunos">
+                    <field name="first_name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_socialschool_base_student_form" model="ir.ui.view">
+            <field name="name">view.socialschool.student.form</field>
+            <field name="model">socialschool.student</field>
+            <field name="arch" type="xml">
+                <form string="Alunos">
+                    <sheet>
+                        <div class="row">
+                            <div name="smart_button" class="oe_button_box col-md-12">
+                                <button name="toggle_active" type="object"
+                                        class="oe_stat_button" icon="fa-archive">
+                                    <field name="active" widget="boolean_button"
+                                           options='{"terminology": "archive"}'/>
+                                </button>
+                            </div>
+                        </div>
+                        <field name="image" widget="image" class="oe_left oe_avatar"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="title" placeholder="Titulo" style="width: 30%%"/>
+                            </h1>
+                            <h1>
+                                <field name="name" placeholder="Name" required="1" invisible="1"/>
+                                <table>
+                                    <tr>
+                                        <td style="padding-right:10px">
+                                            <field name="first_name" required="1" placeholder="Nome"/>
+                                        </td>
+                                        <td style="padding-right:10px">
+                                            <field name="last_name" placeholder="Sobrenome"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </h1>
+                        </div>
+                        <notebook>
+                            <page string="Dados do aluno">
+                                <group>
+                                    <group>
+                                        <field name="gender"/>
+                                        <field name="nationality"/>
+                                        <field name="birth_date"/>
+                                    </group>
+                                    <group>
+                                        <field name="phone"/>
+                                        <field name="mobile"/>
+                                        <field name="email"/>
+                                    </group>
+                                </group>
+                                <group name="address">
+                                    <label for="type"/>
+                                    <div name="div_type">
+                                        <field class="oe_inline" name="type"/>
+                                    </div>
+                                    <label for="street" string="Endereço"/>
+                                    <div name="div_address">
+                                        <field name="street" placeholder="Rua"/>
+                                        <field name="street2" placeholder="Complemento"/>
+                                        <div class="address_format">
+                                            <field name="city" placeholder="Cidade" style="width: 40%%"/>
+                                            <field name="state_id" class="oe_no_button" placeholder="Estado"
+                                                   style="width: 37%%" options='{"no_open": True}'/>
+                                            <field name="zip" placeholder="CEP" style="width: 20%%"/>
+                                        </div>
+                                        <field name="country_id"
+                                               placeholder="País" class="oe_no_button"
+                                               options='{"no_open": True}'/>
+                                    </div>
+                                </group>
+                            </page>
+                            <page string="Dados relativos a saúde do aluno">
+                                <field name="health_ids">
+                                    <form>
+                                        <sheet>
+                                            <field name="type"/>
+                                        </sheet>
+                                    </form>
+                                    <tree>
+                                        <field name="type"/>
+                                        <field name="medication_use"/>
+                                        <field name="description"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="act_menu_socialschool_base_student" model="ir.actions.act_window">
+            <field name="name">Alunos</field>
+            <field name="res_model">socialschool.student</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Adicione seu primeiro aluno</p>
+            </field>
+        </record>
+
+        <record id="act_menu_socialschool_student_form" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="act_menu_socialschool_base_student"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_socialschool_base_student_form"/>
+        </record>
+
+        <record id="act_menu_socialschool_base_student_tree" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="act_menu_socialschool_base_student"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_socialschool_base_student_tree"/>
+        </record>
+    </data>
+</odoo>

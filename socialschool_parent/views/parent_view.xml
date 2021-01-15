@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_escolasocial_gestao_cursos_tree" model="ir.ui.view">
+            <field name="name">view.escolasocial.gestao.cursos.tree</field>
+            <field name="model">escolasocial.curso</field>
+            <field name="arch" type="xml">
+                <tree string="Cursos">
+                    <field name="nome"/>
+                    <field name="grupo_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_escolasocial_gestao_cursos_form" model="ir.ui.view">
+            <field name="name">view.escolasocial.gestao.cursos.form</field>
+            <field name="model">escolasocial.curso</field>
+            <field name="arch" type="xml">
+                <form string="Cursos">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="nome"/>
+                            </group>
+                            <group>
+                                <field name="grupo_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="act_menu_escolasocial_gestao_cursos" model="ir.actions.act_window">
+            <field name="name">Cursos</field>
+            <field name="res_model">escolasocial.curso</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Adicione seu primeiro curso</p>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_menu_escolasocial_gestao_cursos_form">
+            <field name="act_window_id" ref="act_menu_escolasocial_gestao_cursos"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_escolasocial_gestao_cursos_form"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_menu_escolasocial_gestao_cursos_tree">
+            <field name="act_window_id" ref="act_menu_escolasocial_gestao_cursos"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_escolasocial_gestao_cursos_tree"/>
+        </record>
+    </data>
+</odoo>

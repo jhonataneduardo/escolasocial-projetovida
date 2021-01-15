@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_socialschool_base_category_tree" model="ir.ui.view">
+            <field name="name">view.socialschool.category.tree</field>
+            <field name="model">socialschool.course.category</field>
+            <field name="arch" type="xml">
+                <tree string="Grupos">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_socialschool_base_category_form" model="ir.ui.view">
+            <field name="name">view.socialschool.category.form</field>
+            <field name="model">socialschool.course.category</field>
+            <field name="arch" type="xml">
+                <form string="Categorias">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="act_menu_socialschool_base_category" model="ir.actions.act_window">
+            <field name="name">Categorias</field>
+            <field name="res_model">socialschool.course.category</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Adicione seu primeiro integrante do corpo docente</p>
+            </field>
+        </record>
+
+        <record id="act_menu_socialschool_category_form" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="act_menu_socialschool_base_category"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_socialschool_base_category_form"/>
+        </record>
+
+        <record id="act_menu_socialschool_base_category_tree" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="act_menu_socialschool_base_category"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_socialschool_base_category_tree"/>
+        </record>
+
+    </data>
+</odoo>
