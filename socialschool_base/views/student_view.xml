@@ -60,6 +60,7 @@
                                         <field name="phone"/>
                                         <field name="mobile"/>
                                         <field name="email"/>
+                                        <field name="partner_id" required="0"/>
                                     </group>
                                 </group>
                                 <group name="address">
@@ -106,11 +107,6 @@
                                         <field name="description"/>
                                     </tree>
                                 </field>
-                                <group>
-                                    <group>
-                                        <field name="partner_id"/>
-                                    </group>
-                                </group>
                             </page>
                         </notebook>
                     </sheet>
