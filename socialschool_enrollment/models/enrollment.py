@@ -77,7 +77,7 @@ class SocialSchoolEnrollment(models.Model):
 
     @api.multi
     def done_enrollment(self):
-        vacancie_id = self.env['socialschool.vacancie'].browse([self.id])
+        vacancie_id = self.env['socialschool.vacancie.move'].search([('enrollment_id', '=', self.id)])
         vacancie_id.write({'state': 'done'})
         self.write({'state': 'done'})
 
@@ -89,11 +89,13 @@ class SocialSchoolEnrollmentCourse(models.Model):
 
     enrollment_id = fields.Many2one(
         "socialschool.enrollment",
-        string="Matrículas"
+        string="Matrículas",
+        ondelete='cascade'
     )
     course_id = fields.Many2one(
         "socialschool.course",
-        string="Cursos"
+        string="Cursos",
+        ondelete='restrict'
     )
     course_group = fields.Char(
         string="Grupo"

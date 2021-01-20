@@ -7,10 +7,11 @@ class SocialSchoolCurse(models.Model):
     _inherit = "mail.thread"
 
     name = fields.Char(string="Nome")
-    group_id = fields.Many2one("socialschool.group", string="Grupo")
+    group_id = fields.Many2one("socialschool.group", string="Grupo", ondelete='restrict')
     category_id = fields.Many2one("socialschool.course.category", string="Categoria")
     vacancies = fields.Integer(string="Vagas")
     subject_ids = fields.One2many('socialschool.course.subject', "course_id")
+    faculty_id = fields.Many2one("socialschool.faculty", string="Professore Responsável")
     active = fields.Boolean(default=True)
 
     hide = fields.Boolean(string="Hide", compute="_compute_hide")

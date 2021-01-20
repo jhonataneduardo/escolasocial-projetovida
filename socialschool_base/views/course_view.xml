@@ -8,6 +8,7 @@
             <field name="arch" type="xml">
                 <tree string="Cursos">
                     <field name="name"/>
+                    <field name="faculty_id"/>
                     <field name="group_id"/>
                     <field name="category_id"/>
                 </tree>
@@ -24,12 +25,13 @@
                         <group>
                             <group>
                                 <field name="name"/>
-                                <field name="vacancies"
-                                       attrs="{'invisible': [('hide', '!=', True)], 'required': [('hide', '=', True)]}"/>
+                                <field name="faculty_id" required="1"/>
                             </group>
                             <group>
                                 <field name="group_id"/>
                                 <field name="category_id"/>
+                                <field name="vacancies"
+                                       attrs="{'invisible': [('hide', '!=', True)], 'required': [('hide', '=', True)]}"/>
                             </group>
                         </group>
                         <notebook>
