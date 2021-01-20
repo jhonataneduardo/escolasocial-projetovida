@@ -9,7 +9,7 @@
     'summary': '...',
     'author': 'Jhonatan Eduardo',
     'website': '#',
-    'depends': ['hr'],
+    'depends': ['base', 'mail'],
     'data': [
         'security/socialschool_security.xml',
         'security/ir.model.access.csv',

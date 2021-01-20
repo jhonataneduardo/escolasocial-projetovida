@@ -6,4 +6,3 @@ access_socialschool_group, access.socialschool.group,model_socialschool_group,ba
 access_socialschool_course, access.socialschool.course,model_socialschool_course,base.group_user,1,1,1,1
 access_socialschool_course_category, access.socialschool.course.category,model_socialschool_course_category,base.group_user,1,1,1,1
 access_socialschool_course_subject, access.socialschool.course.subject,model_socialschool_course_subject,base.group_user,1,1,1,1
-access_socialschool_vacancie, access.socialschool.vacancie,model_socialschool_vacancie,base.group_user,1,1,1,1

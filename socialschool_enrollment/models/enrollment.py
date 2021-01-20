@@ -1,4 +1,5 @@
 from odoo import models, fields, api, _
+from odoo.exceptions import Warning
 
 
 class SocialSchoolEnrollment(models.Model):
@@ -30,17 +31,40 @@ class SocialSchoolEnrollment(models.Model):
         'Status', default='draft', track_visibility='onchange')
     active = fields.Boolean(default=True)
 
-    # @api.model
-    # def create(self, vals):
-    #     if vals.get('name', 'Nova') == 'Nova':
-    #         vals['name'] = self.env['ir.sequence'].next_by_code('socialschool.enrollment') or 'Nova'
-    #     result = super(SocialSchoolEnrollment, self).create(vals)
-    #     return result
+    @api.model
+    def create(self, vals):
+        if vals.get('name', 'Nova') == 'Nova':
+            vals['name'] = self.env['ir.sequence'].next_by_code('socialschool.enrollment') or 'Nova'
+        result = super(SocialSchoolEnrollment, self).create(vals)
+        return result
+
+    @api.multi
+    def _check_vacancies(self, course):
+        if course.group_id.type_vacancies == 'by_group':
+            course_vacancies = course.group_id.number_vacancies
+        elif course.group_id.type_vacancies == 'by_course':
+            course_vacancies = course.vacancies
+        else:
+            course_vacancies = 1000000
+
+        vacancie_moves = self.env['socialschool.vacancie.move'].search([
+            ('course_id', '=', course.id),
+            ('company_id', '=', self.env.user.company_id.id),
+            ('state', 'in', ['reserved', 'done'])])
+
+        if len(vacancie_moves) == course_vacancies:
+            raise Warning('Não há mais vagas disponíveis para o curso {}'.format(course.name))
+
+        return True
+
 
     @api.multi
     def reserved_enrollment(self):
-        Vacancies = self.env['socialschool.vacancie']
+        if len(self.enrollment_course_ids) == 0:
+            raise Warning('Nenhum curso selecionado.')
+        Vacancies = self.env['socialschool.vacancie.move']
         for course in self.enrollment_course_ids:
+            self._check_vacancies(course.course_id)
             values = {
                 'enrollment_id': self.id,
                 'course_id': course.course_id.id,
@@ -59,7 +83,7 @@ class SocialSchoolEnrollment(models.Model):
 
 
 
-class SocialSchoolEnrollment(models.Model):
+class SocialSchoolEnrollmentCourse(models.Model):
     _name = "socialschool.enrollment.course"
     _description = "Social School Enrollment Course"
 

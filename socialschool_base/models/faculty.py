@@ -16,15 +16,12 @@ class SocialSchookFaculty(models.Model):
     gender = fields.Selection([
         ('male', 'Masculino'),
         ('female', 'Feminino')
-    ], 'Gender', required=True)
+    ], 'Sexo', required=True)
     nationality = fields.Many2one('res.country', 'Nacionalidade')
-    emergency_contact = fields.Many2one(
-        'res.partner', 'Contato de Emergência')
     login = fields.Char(
         'Login', related='partner_id.user_id.login', readonly=1)
     last_login = fields.Datetime('Latest Connection', readonly=1,
                                  related='partner_id.user_id.login_date')
-    emp_id = fields.Many2one('hr.employee', 'HR Employee')
     active = fields.Boolean(default=True)
 
     @api.multi
@@ -38,16 +35,3 @@ class SocialSchookFaculty(models.Model):
     @api.onchange('first_name', 'last_name')
     def _onchange_name(self):
         self.name = str(self.first_name) + " " + str(self.last_name)
-
-    @api.multi
-    def create_employee(self):
-        for record in self:
-            vals = {
-                'name': record.name,
-                'country_id': record.nationality.id,
-                'gender': record.gender,
-                'address_home_id': record.partner_id.id
-            }
-            emp_id = self.env['hr.employee'].create(vals)
-            record.write({'emp_id': emp_id.id})
-            record.partner_id.write({'supplier': True, 'employee': True})
