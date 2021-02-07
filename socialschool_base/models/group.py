@@ -18,3 +18,4 @@ class SocialSchoolGroup(models.Model):
         ('afternoon', 'Tarde'),
         ('fulltime', 'Integral')
     ])
+    faculty_id = fields.Many2one("socialschool.faculty", string="Orientador(a)")
