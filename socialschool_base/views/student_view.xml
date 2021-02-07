@@ -42,7 +42,7 @@
                                             <field name="first_name" required="1" placeholder="Nome"/>
                                         </td>
                                         <td style="padding-right:10px">
-                                            <field name="last_name" placeholder="Sobrenome"/>
+                                            <field name="last_name" placeholder="Sobrenome" required="1"/>
                                         </td>
                                     </tr>
                                 </table>
@@ -54,11 +54,11 @@
                                     <group>
                                         <field name="gender"/>
                                         <field name="nationality"/>
-                                        <field name="birth_date"/>
+                                        <field name="birth_date" required="1"/>
                                     </group>
                                     <group>
                                         <field name="phone"/>
-                                        <field name="mobile"/>
+                                        <field name="mobile" required="1"/>
                                         <field name="email"/>
                                         <field name="partner_id" required="0" invisible="1"/>
                                     </group>
@@ -70,16 +70,16 @@
                                     </div>
                                     <label for="street" string="Endereço"/>
                                     <div name="div_address">
-                                        <field name="street" placeholder="Rua"/>
+                                        <field name="street" placeholder="Rua" required="1"/>
                                         <field name="street2" placeholder="Complemento"/>
                                         <div class="address_format">
-                                            <field name="city" placeholder="Cidade" style="width: 40%%"/>
+                                            <field name="city" placeholder="Cidade" required="1" style="width: 40%%"/>
                                             <field name="state_id" class="oe_no_button" placeholder="Estado"
-                                                   style="width: 37%%" options='{"no_open": True}'/>
-                                            <field name="zip" placeholder="CEP" style="width: 20%%"/>
+                                                   required="1" style="width: 37%%" options='{"no_open": True}'/>
+                                            <field name="zip" placeholder="CEP" required="1" style="width: 20%%"/>
                                         </div>
                                         <field name="country_id"
-                                               placeholder="País" class="oe_no_button"
+                                               placeholder="País" required="1" class="oe_no_button"
                                                options='{"no_open": True}'/>
                                     </div>
                                 </group>
