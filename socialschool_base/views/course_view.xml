@@ -2,11 +2,45 @@
 <odoo>
     <data>
 
+        <record id="view_socialschool_base_course_kanban" model="ir.ui.view">
+            <field name="name">view.socialschool.course.kanban</field>
+            <field name="model">socialschool.course</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="name"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click o_res_partner_kanban">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open">
+                                            <field name="name"/>
+                                        </a>
+                                    </h4>
+                                    <strong>Grupo:</strong>
+                                    <field name="group_id"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong>Responsável:</strong>
+                                    <field name="faculty_id"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong>Vagas Disponíveis:</strong>
+                                    <field name="available_vacancies"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
         <record id="view_socialschool_base_course_tree" model="ir.ui.view">
             <field name="name">view.socialschool.course.tree</field>
             <field name="model">socialschool.course</field>
             <field name="arch" type="xml">
                 <tree string="Cursos">
+                    <field name="available_vacancies"/>
                     <field name="name"/>
                     <field name="faculty_id"/>
                     <field name="group_id"/>
@@ -53,16 +87,6 @@
             </field>
         </record>
 
-        <record id="act_menu_socialschool_base_course" model="ir.actions.act_window">
-            <field name="name">Cursos</field>
-            <field name="res_model">socialschool.course</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="help" type="html">
-                <p class="oe_view_nocontent_create">Adicione seu primeiro integrante do corpo docente</p>
-            </field>
-        </record>
-
         <record id="act_menu_socialschool_course_form" model="ir.actions.act_window.view">
             <field name="act_window_id" ref="act_menu_socialschool_base_course"/>
             <field name="sequence" eval="20"/>
@@ -75,6 +99,23 @@
             <field name="sequence" eval="10"/>
             <field name="view_mode">tree</field>
             <field name="view_id" ref="view_socialschool_base_course_tree"/>
+        </record>
+
+        <record id="act_menu_socialschool_base_course_kanban" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="act_menu_socialschool_base_course"/>
+            <field name="sequence" eval="5"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="view_socialschool_base_course_kanban"/>
+        </record>
+
+        <record id="act_menu_socialschool_base_course" model="ir.actions.act_window">
+            <field name="name">Cursos</field>
+            <field name="res_model">socialschool.course</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Adicione seu primeiro integrante do corpo docente</p>
+            </field>
         </record>
 
     </data>

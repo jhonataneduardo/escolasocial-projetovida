@@ -13,6 +13,7 @@ class SocialSchoolCurse(models.Model):
     subject_ids = fields.One2many('socialschool.course.subject', "course_id")
     faculty_id = fields.Many2one("socialschool.faculty", string="Professore Responsável")
     active = fields.Boolean(default=True)
+    available_vacancies = fields.Integer(string="Vagas Disponíveis", compute="_compute_available_vacancies")
 
     hide = fields.Boolean(string="Hide", compute="_compute_hide")
 
@@ -22,6 +23,25 @@ class SocialSchoolCurse(models.Model):
             self.hide = True
         else:
             self.hide = False
+
+    def _compute_available_vacancies(self):
+        VacancieMoves = self.env['socialschool.vacancie.move']
+        for course in self:
+            if course.group_id.type_vacancies == 'by_group':
+                course_vacancies = course.group_id.number_vacancies
+            elif course.group_id.type_vacancies == 'by_course':
+                course_vacancies = course.vacancies
+            else:
+                course_vacancies = 1000000
+
+            vacancie_moves = VacancieMoves.search([
+                ('course_id', '=', course.id),
+                ('company_id', '=', self.env.user.company_id.id),
+                ('state', 'in', ['reserved', 'done'])])
+            course.available_vacancies = course_vacancies - len(vacancie_moves)
+        return True
+
+
 
 
 class SocialSchoolCurseSubject(models.Model):
