@@ -22,6 +22,10 @@ class SocialSchookFaculty(models.Model):
         'Login', related='partner_id.user_id.login', readonly=1)
     last_login = fields.Datetime('Latest Connection', readonly=1,
                                  related='partner_id.user_id.login_date')
+    activity_ids = fields.One2many(
+        "socialschool.faculty.activity",
+        "faculty_id",
+        string="Atividades")
     active = fields.Boolean(default=True)
 
     @api.multi
@@ -35,3 +39,29 @@ class SocialSchookFaculty(models.Model):
     @api.onchange('first_name', 'last_name')
     def _onchange_name(self):
         self.name = str(self.first_name) + " " + str(self.last_name)
+
+
+class SocialSchookFacultyActivity(models.Model):
+    _name = "socialschool.faculty.activity"
+
+    faculty_id = fields.Many2one(
+        "socialschool.faculty",
+        string="Atividades")
+    day = fields.Selection([
+        ('monday', 'Segunda-feira'),
+        ('tuesday', 'Terça-feira'),
+        ('wednesday', 'Quarta-feira'),
+        ('thursday', 'Quinta-feira'),
+        ('friday', 'Sexta-feira'),
+        ('saturday', 'Sábado'),
+        ('sunday', 'Domingo')
+    ], string="Dia da Semana")
+    start_time = fields.Float(
+        string="Horário de Entrada")
+    end_time = fields.Float(
+        string="Horário de Saída")
+    course_ids = fields. Many2many(
+        "socialschool.course",
+        string="Cursos/Oficinas")
+    description = fields.Text(
+        string="Descrição")

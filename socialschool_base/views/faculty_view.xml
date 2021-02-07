@@ -79,6 +79,30 @@
                                                options='{"no_open": True}'/>
                                     </div>
                                 </group>
+                                <separator string="Atividades" colspan="4"/>
+                                <field name="activity_ids" widget="section_and_note_one2many">
+                                    <form>
+                                        <group>
+                                            <group>
+                                                <field name="start_time" widget="float_time"/>
+                                                <field name="start_time" widget="float_time"/>
+                                            </group>
+                                            <group>
+                                                <field name="day"/>
+                                                <field name="course_ids" widget="many2many_tags"/>
+                                            </group>
+                                        </group>
+                                        <group>
+                                            <field name="description"/>
+                                        </group>
+                                    </form>
+                                    <tree>
+                                        <field name="day"/>
+                                        <field name="start_time" widget="float_time"/>
+                                        <field name="end_time" widget="float_time"/>
+                                        <field name="course_ids" widget="many2many_tags"/>
+                                    </tree>
+                                </field>
                             </page>
                         </notebook>
                     </sheet>

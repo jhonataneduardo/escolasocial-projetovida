@@ -2,6 +2,7 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_socialschool_student, access.socialschool.student,model_socialschool_student,base.group_user,1,1,1,1
 access_socialschool_student_health, access.socialschool.student.health,model_socialschool_student_health,base.group_user,1,1,1,1
 access_socialschool_faculty, access.socialschool.faculty,model_socialschool_faculty,base.group_user,1,1,1,1
+access_socialschool_faculty_activity, access.socialschool.faculty.activity,model_socialschool_faculty_activity,base.group_user,1,1,1,1
 access_socialschool_group, access.socialschool.group,model_socialschool_group,base.group_user,1,1,1,1
 access_socialschool_course, access.socialschool.course,model_socialschool_course,base.group_user,1,1,1,1
 access_socialschool_course_category, access.socialschool.course.category,model_socialschool_course_category,base.group_user,1,1,1,1
